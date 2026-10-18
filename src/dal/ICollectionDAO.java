@@ -5,5 +5,6 @@ import java.util.List;
 
 public interface ICollectionDAO {
 		List<HadithCollection> getAllCollections() throws SQLException;
+		void addCollection(HadithCollection collection) throws SQLException;
 
 }

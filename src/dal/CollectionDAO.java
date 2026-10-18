@@ -40,4 +40,26 @@ public class CollectionDAO implements ICollectionDAO {
 
         return collections;
     }
+    
+    @Override
+    public void addCollection(HadithCollection collection) throws SQLException {
+
+        String sql = "INSERT INTO collections "
+                + "(collection_name, compiler, description, edition, publication_details) "
+                + "VALUES ('"
+                + collection.getCollectionName() + "', '"
+                + collection.getCompiler() + "', '"
+                + collection.getDescription() + "', '"
+                + collection.getEdition() + "', '"
+                + collection.getPublicationDetails() + "')";
+
+        try (Connection connection = database.openConnection();
+             Statement statement = connection.createStatement()) {
+
+            statement.executeUpdate(sql);
+
+            System.out.println("Collection added successfully!");
+        }
+    }
+    
 }
