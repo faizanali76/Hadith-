@@ -62,4 +62,26 @@ public class CollectionDAO implements ICollectionDAO {
         }
     }
     
+    @Override
+    public void updateCollection(HadithCollection collection) throws SQLException {
+
+        String sql = "UPDATE collections SET "
+                + "collection_name = '" + collection.getCollectionName() + "', "
+                + "compiler = '" + collection.getCompiler() + "', "
+                + "description = '" + collection.getDescription() + "', "
+                + "edition = '" + collection.getEdition() + "', "
+                + "publication_details = '" + collection.getPublicationDetails() + "' "
+                + "WHERE collection_id = " + collection.getCollectionId();
+
+        try (Connection connection = database.openConnection();
+             Statement statement = connection.createStatement()) {
+
+            int rows = statement.executeUpdate(sql);
+
+            if (rows != 1) {
+                throw new SQLException("Collection not found.");
+            }
+        }
+    }
+    
 }
