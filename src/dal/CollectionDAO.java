@@ -84,4 +84,24 @@ public class CollectionDAO implements ICollectionDAO {
         }
     }
     
+    @Override
+    public void deleteCollection(int collectionId) throws SQLException {
+    	try (Connection connection = database.openConnection();
+    		     Statement statement = connection.createStatement()) {
+
+    		    String sql = "DELETE FROM collections WHERE collection_id = "
+    		            + collectionId;
+
+    		    int rows = statement.executeUpdate(sql);
+
+    		    if (rows > 0) {
+    		        System.out.println("Collection deleted successfully!");
+    		    } else {
+    		        System.out.println("Collection not found!");
+    		    }
+    		}catch (SQLException e) {
+    		    System.out.println("Error deleting collection: " + e.getMessage());
+    		}
+    }
+    
 }

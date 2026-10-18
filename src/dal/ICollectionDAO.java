@@ -7,4 +7,5 @@ public interface ICollectionDAO {
 		List<HadithCollection> getAllCollections() throws SQLException;
 		void addCollection(HadithCollection collection) throws SQLException;
 		void updateCollection(HadithCollection collection) throws SQLException;
+		void deleteCollection(int collectionId) throws SQLException;
 }
